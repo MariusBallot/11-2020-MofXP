@@ -10,8 +10,8 @@ import ThreeScene from "./components/ThreeScene.vue";
 export default {
   name: "App",
   components: {
-    ThreeScene
-  }
+    ThreeScene,
+  },
 };
 </script>
 
@@ -20,6 +20,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
 
 * {

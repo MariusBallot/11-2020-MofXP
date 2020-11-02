@@ -1,5 +1,6 @@
 import * as THREE from "three"
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import myGUI from "../utils/MyGui"
 
 import RAF from "../utils/raf"
 
@@ -17,7 +18,7 @@ class CoffeeBeans {
         this.dummySeeds = []
 
         this.params = {
-            count: 1000,
+            count: 10000,
             rad: 3,
             scatter: 2,
             speed: 1
@@ -48,6 +49,21 @@ class CoffeeBeans {
 
             RAF.subscribe("coffeeBeanUpdate", this.update)
         })
+
+
+        myGUI.gui.add(this.params, "speed", 0, 5).step(0.001)
+        myGUI.gui.add(this.params, "scatter", 0, 5).step(0.001)
+        myGUI.gui.add(this.params, "rad", 0, 5).step(0.001)
+        myGUI.gui.add(this.params, "count", 0, 10000).step(1).onChange(this.initBeans)
+
+    }
+
+    initBeans() {
+        console.log(this.params.count)
+        for (let i = 0; i < this.params.count; i++) {
+            this.dummySeeds[i] = Math.random()
+        }
+        this.instBeans.count = this.params.count
     }
 
     update() {
@@ -79,6 +95,7 @@ class CoffeeBeans {
     bind() {
         this.init = this.init.bind(this)
         this.update = this.update.bind(this)
+        this.initBeans = this.initBeans.bind(this)
     }
 
 }
