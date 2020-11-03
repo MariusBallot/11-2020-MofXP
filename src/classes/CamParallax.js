@@ -13,13 +13,14 @@ export default class CamParalax {
 
     mouseMove(e) {
         this.mousePos.set(e.clientX - window.innerWidth / 2, e.clientY - window.innerHeight / 2)
-        this.mousePos.multiplyScalar(0.001)
+        this.mousePos.multiplyScalar(0.005)
         console.log(this.mousePos)
     }
 
     update() {
         this.camera.position.x += (this.mousePos.x - this.camera.position.x) * 0.1
         this.camera.position.y += (this.mousePos.y - this.camera.position.y) * 0.1
+        this.camera.lookAt(0, 0, 0)
 
     }
 
