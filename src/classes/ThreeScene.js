@@ -8,6 +8,7 @@ import MyGui from '../utils/MyGui'
 
 import MofLogo from './MofLogo'
 import CoffeeBeans from './CoffeeBeans'
+import CamParallax from './CamParallax'
 
 class ThreeScene {
     constructor() {
@@ -34,16 +35,21 @@ class ThreeScene {
         this.controls.maxDistance = 1500
         this.controls.minDistance = 0
 
+        if (!config.controls)
+            new CamParallax(this.camera)
+
+
         if (config.myGui)
             MyGui.start()
-
-
 
         MofLogo.init(this.scene)
         CoffeeBeans.init(this.scene)
 
         window.addEventListener("resize", this.resizeCanvas)
         RAF.subscribe('threeSceneUpdate', this.update)
+
+        this.scene.rotateY(.5)
+
     }
 
     update() {
